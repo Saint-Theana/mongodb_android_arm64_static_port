@@ -28,9 +28,9 @@ jobs:
         id: setup-ndk
         with:
           ndk-version: r21e
-          add-to-path: /opt
+          add-to-path: /opt/hostedtoolcache/ndk/r21e
         env:
-          ANDROID_NDK_HOME: /opt
+          ANDROID_NDK_HOME: /opt/hostedtoolcache/ndk/r21e
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: find /opt -name *clang*
@@ -40,3 +40,13 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+      -  uses: sudosubin/git-clone-action@v1.0.1
+         with:
+        # Repository owner and name. Ex: sudosubin/git-clone-action
+           repository: https://github.com/mongodb/mongo
+           # platform: # optional, default is github
+           #ref: # optional
+           path: /root
+
+

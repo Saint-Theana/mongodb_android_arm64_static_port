@@ -47,7 +47,6 @@ jobs:
            repository: mongodb/mongo
            # platform: # optional, default is github
            #ref: # optional
-           path: /root
            
       - name: Run a one-line script
         run: |

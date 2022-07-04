@@ -50,4 +50,4 @@ jobs:
            path: /root
            
       - name: Run a one-line script
-        run: ls /root
+        run: pwd

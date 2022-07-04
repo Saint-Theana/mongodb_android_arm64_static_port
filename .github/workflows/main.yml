@@ -33,7 +33,7 @@ jobs:
           ANDROID_NDK_HOME: /opt
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: ls /opt
+        run: tree /opt
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script

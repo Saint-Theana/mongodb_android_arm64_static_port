@@ -27,13 +27,13 @@ jobs:
       - uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
-          ndk-version: r21e
-          add-to-path: /opt/hostedtoolcache/ndk/r21e
+          ndk-version: r23c
+          add-to-path: /opt/hostedtoolcache/ndk/r23c
         env:
-          ANDROID_NDK_HOME: /opt/hostedtoolcache/ndk/r21e
+          ANDROID_NDK_HOME: /opt/hostedtoolcache/ndk/r23c
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo hello
+        run: ls $ANDROID_NDK_HOME
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script

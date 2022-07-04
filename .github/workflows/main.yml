@@ -50,7 +50,9 @@ jobs:
            path: /root
            
       - name: Run a one-line script
-        run: pwd
+        run: |
+             pwd
+             ls
         
       - name: Setup Python
         uses: actions/setup-python@v4.0.0

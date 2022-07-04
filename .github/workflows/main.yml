@@ -1,9 +1,6 @@
- name: Setup Android NDK
-  # You may pin to the exact commit or the version.
-  # uses: nttld/setup-ndk@b2abc75192ee2a1ec118c8238fd86dec6d96dc43
-  uses: nttld/setup-ndk@v1.0.6
-  with:
-    # Exact version to use
-    ndk-version: 
-    # Add installation directory to path
-    add-to-path: # optional, default is true
+steps:
+   uses: actions/checkout@v2
+   uses: nttld/setup-ndk@v1
+    with:
+      ndk-version: r21e
+   runs: ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./Android.mk NDK_APPLICATION_MK=./Application.mk

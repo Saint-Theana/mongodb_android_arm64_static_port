@@ -43,6 +43,11 @@ jobs:
       - name: Build
         run: bash ./build.sh
         
+      - name: Upload build
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mongodb
+          path: install/usr/bin/mongod
 
   
 

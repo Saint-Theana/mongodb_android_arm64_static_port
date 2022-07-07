@@ -155,8 +155,8 @@ static size_t slow_strlen(const char *s) {
 const char* GetenvBeforeMain(const char* name) {
   const int namelen = slow_strlen(name);
 #if defined(HAVE___ENVIRON)   // if we have it, it's declared in unistd.h
-  if (__environ) {            // can exist but be NULL, if statically linked
-    for (char** p = __environ; *p; p++) {
+  if (environ) {            // can exist but be NULL, if statically linked
+    for (char** p = environ; *p; p++) {
       if (!slow_memcmp(*p, name, namelen) && (*p)[namelen] == '=')
         return *p + namelen+1;
     }

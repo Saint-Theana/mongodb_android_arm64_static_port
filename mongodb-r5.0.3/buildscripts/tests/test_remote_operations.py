@@ -177,12 +177,12 @@ class RemoteOperationShell(RemoteOperationsTestCase):
 
         # Command with directory and pipe
         ret, buff = self.rop.shell("touch {dir}/{file}; ls {dir} | grep {file}".format(
-            file=time.time(), dir="/tmp"))
+            file=time.time(), dir="/data/local/tmp"))
         self.assertEqual(0, ret)
         self.assertIsNotNone(buff)
 
         ret, buff = self.rop_use_shell.shell("touch {dir}/{file}; ls {dir} | grep {file}".format(
-            file=time.time(), dir="/tmp"))
+            file=time.time(), dir="/data/local/tmp"))
         self.assertEqual(0, ret)
         self.assertIsNotNone(buff)
 

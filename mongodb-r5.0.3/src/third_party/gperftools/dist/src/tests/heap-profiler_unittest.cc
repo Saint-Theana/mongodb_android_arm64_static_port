@@ -88,7 +88,7 @@ static void TestHeapProfilerStartStopIsRunning() {
   if (!IsHeapProfilerRunning()) {
     const char* tmpdir = getenv("TMPDIR");
     if (tmpdir == NULL)
-      tmpdir = "/tmp";
+      tmpdir = "/data/local/tmp";
     mkdir(tmpdir, 0755);     // if necessary
     HeapProfilerStart((string(tmpdir) + "/start_stop").c_str());
     CHECK(IsHeapProfilerRunning());
@@ -107,7 +107,7 @@ static void TestDumpHeapProfiler() {
   if (!IsHeapProfilerRunning()) {
     const char* tmpdir = getenv("TMPDIR");
     if (tmpdir == NULL)
-      tmpdir = "/tmp";
+      tmpdir = "/data/local/tmp";
     mkdir(tmpdir, 0755);     // if necessary
     HeapProfilerStart((string(tmpdir) + "/dump").c_str());
     CHECK(IsHeapProfilerRunning());

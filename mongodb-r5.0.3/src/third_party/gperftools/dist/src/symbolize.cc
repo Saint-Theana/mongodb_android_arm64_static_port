@@ -80,7 +80,7 @@ static string* g_pprof_path = new string(FLAGS_symbolize_pprof);
 // Returns NULL if we're on an OS where we can't get the invocation name.
 // Using a static var is ok because we're not called from a thread.
 static const char* GetProgramInvocationName() {
-#if defined(HAVE_PROGRAM_INVOCATION_NAME)
+#if defined(HAVE_PROGRAM_INVOCATION_NAM)
 #ifdef __UCLIBC__
   extern const char* program_invocation_name; // uclibc provides this
 #else

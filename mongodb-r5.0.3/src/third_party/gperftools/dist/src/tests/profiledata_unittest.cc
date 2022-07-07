@@ -119,7 +119,7 @@ class ProfileDataChecker {
   ProfileDataChecker() {
     const char* tmpdir = getenv("TMPDIR");
     if (tmpdir == NULL)
-      tmpdir = "/tmp";
+      tmpdir = "/data/local/tmp";
     mkdir(tmpdir, 0755);     // if necessary
     filename_ = string(tmpdir) + "/profiledata_unittest.tmp";
   }

@@ -78,7 +78,7 @@ std::string GetTmpDir() {
   }
 
   // Try something reasonable.
-  return "/tmp";
+  return "/data/local/tmp";
 }
 
 // This function runs in a fork()ed process on most systems.

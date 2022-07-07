@@ -2802,7 +2802,7 @@ path temp_directory_path(system::error_code* ec)
 #   ifdef __ANDROID__
   const char* default_tmp = "/data/local/tmp";
 #   else
-  const char* default_tmp = "/tmp";
+  const char* default_tmp = "/data/local/tmp";
 #   endif
   path p((val != NULL) ? val : default_tmp);
 

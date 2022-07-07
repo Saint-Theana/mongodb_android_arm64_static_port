@@ -30,7 +30,8 @@ HOST="aarch64-linux-android"
 TARGET="aarch64-linux-android"
 BUILD="x86_64-unknown-linux-gnu"
 
-mkdir -p ${PREFIX}
+sudo mkdir -p ${PREFIX}
+chmod 755 -R ${PREFIX}
 
 wget ${OPENSSL}
 tar xvf openssl-3.0.0.tar.gz

@@ -32,7 +32,7 @@
 # elif defined(__ANDROID__)
 #  define JIT_SPEW_DIR "/data/local/tmp"
 # else
-#  define JIT_SPEW_DIR "/tmp"
+#  define JIT_SPEW_DIR "/data/local/tmp"
 # endif
 #endif
 

@@ -231,7 +231,7 @@ DEFINE_string(heap_profile_pprof,
               "OBSOLETE; not used");
 
 DEFINE_string(heap_check_dump_directory,
-              EnvToString("HEAP_CHECK_DUMP_DIRECTORY", "/tmp"),
+              EnvToString("HEAP_CHECK_DUMP_DIRECTORY", "/data/local/tmp"),
               "Directory to put heap-checker leak dump information");
 
 

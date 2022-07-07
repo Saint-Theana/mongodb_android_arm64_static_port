@@ -504,7 +504,7 @@ inline bool get_temporary_path(char *buffer, std::size_t buf_len, std::size_t &r
    if(buf_len < required_len)
       return false;
    else{
-      std::strcpy(buffer, "/tmp");
+      std::strcpy(buffer, "/data/local/tmp");
    }
    return true;
 }

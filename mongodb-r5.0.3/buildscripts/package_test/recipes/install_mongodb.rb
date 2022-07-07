@@ -2,7 +2,7 @@
 # preparation for running some basic server functionality tests.
 
 artifacts_tarball = 'artifacts.tgz'
-homedir = "/tmp"
+homedir = "/data/local/tmp"
 
 ruby_block 'allow sudo over tty' do
   block do

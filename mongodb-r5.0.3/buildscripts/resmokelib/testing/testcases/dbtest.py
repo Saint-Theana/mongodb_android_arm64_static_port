@@ -74,4 +74,4 @@ class DBTestCase(interface.ProcessTestCase):
         for env_var in ("TMPDIR", "TEMP", "TMP"):
             if env_var in os.environ:
                 return os.environ[env_var]
-        return os.path.normpath("/tmp")
+        return os.path.normpath("/data/local/tmp")

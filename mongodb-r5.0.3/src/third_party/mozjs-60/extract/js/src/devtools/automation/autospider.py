@@ -565,7 +565,7 @@ if use_minidump:
     run_command([
         venv_python,
         os.path.join(DIR.source, "testing/mozbase/mozcrash/mozcrash/mozcrash.py"),
-        os.getenv("TMPDIR", "/tmp"),
+        os.getenv("TMPDIR", "/data/local/tmp"),
         os.path.join(OBJDIR, "dist/crashreporter-symbols"),
     ])
 

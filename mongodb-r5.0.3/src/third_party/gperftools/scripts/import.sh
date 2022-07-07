@@ -28,7 +28,7 @@ REVISION=$VERSION-mongodb
 if $(grep -q Microsoft /proc/version); then
     TEMP_ROOT=$(wslpath -u $(powershell.exe -Command "Get-ChildItem Env:TEMP | Get-Content | Write-Host"))
 else
-    TEMP_ROOT="/tmp"
+    TEMP_ROOT="/data/local/tmp"
 fi
 REPO=$(mktemp -d $TEMP_ROOT/$NAME.XXXXXX)
 trap "rm -rf $REPO" EXIT

@@ -133,7 +133,7 @@ inline void get_shared_dir_root(std::basic_string<CharT> &dir_path)
    #if defined (BOOST_INTERPROCESS_WINDOWS)
       winapi::get_shared_documents_folder(dir_path);
    #else               
-      dir_path = "/tmp";
+      dir_path = "/data/local/tmp";
    #endif
 
    //We always need this path, so throw on error

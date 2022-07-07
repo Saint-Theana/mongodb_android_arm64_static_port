@@ -32,23 +32,8 @@ jobs:
         env:
           ANDROID_NDK_HOME: /opt/hostedtoolcache/ndk/r23c
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: ls $ANDROID_NDK_HOME
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          
-      -  uses: sudosubin/git-clone-action@v1.0.1
-         with:
-        # Repository owner and name. Ex: sudosubin/git-clone-action
-           repository: mongodb/mongo
-           # platform: # optional, default is github
-           #ref: # optional
            
-      - name: Run a one-line script
+      - name: Build Libraries
         run: ./build.sh
         
       - name: Setup Python

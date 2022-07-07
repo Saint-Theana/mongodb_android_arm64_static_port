@@ -32,10 +32,6 @@ jobs:
         env:
           ANDROID_NDK_HOME: /opt/hostedtoolcache/ndk/r23c
       # Runs a single command using the runners shell
-           
-      - name: Build Libraries
-        run: bash ./build.sh
-        
       - name: Setup Python
         uses: actions/setup-python@v4.0.0
         with:
@@ -43,6 +39,11 @@ jobs:
          
       - name: Test Python
         run: python --version
+      
+      - name: Build
+        run: bash ./build.sh
+        
+
   
 
 

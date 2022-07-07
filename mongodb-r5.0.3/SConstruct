@@ -2055,7 +2055,8 @@ for suboption in get_option('experimental-runtime-hardening'):
 if env.TargetOSIs('linux'):
     env.Append( LIBS=["m"] )
     if not env.TargetOSIs('android'):
-        env.Append( LIBS=["resolv"] )
+        pass
+        //env.Append( LIBS=["resolv"] )
 
 elif env.TargetOSIs('solaris'):
      env.Append( LIBS=["socket","resolv","lgrp"] )

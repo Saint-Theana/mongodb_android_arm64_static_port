@@ -33,6 +33,16 @@ BUILD="x86_64-unknown-linux-gnu"
 sudo mkdir -p ${PREFIX}
 chmod 755 -R ${PREFIX}
 
+cd ${ROOT_PATH}
+cd liblzma
+pwd
+file ./autogen.sh
+bash autogen.sh
+PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static
+make -j8
+make install
+
+
 wget ${OPENSSL}
 tar xvf openssl-3.0.0.tar.gz
 cd openssl-3.0.0
@@ -49,14 +59,7 @@ make -j8
 make install
 
 
-cd ${ROOT_PATH}
-cd liblzma
-pwd
-file ./autogen.sh
-bash autogen.sh
-PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static
-make -j8
-make install
+
 
 cd ${ROOT_PATH}
 cd mongodb-r5.0.3

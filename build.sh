@@ -31,7 +31,7 @@ TARGET="aarch64-linux-android"
 BUILD="x86_64-unknown-linux-gnu"
 
 sudo mkdir -p ${PREFIX}
-chmod 755 -R ${PREFIX}
+sudo chmod 755 -R ${PREFIX}
 
 cd ${ROOT_PATH}
 cd liblzma

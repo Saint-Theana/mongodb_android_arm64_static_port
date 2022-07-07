@@ -2056,7 +2056,7 @@ if env.TargetOSIs('linux'):
     env.Append( LIBS=["m"] )
     if not env.TargetOSIs('android'):
         pass
-        //env.Append( LIBS=["resolv"] )
+        #env.Append( LIBS=["resolv"] )
 
 elif env.TargetOSIs('solaris'):
      env.Append( LIBS=["socket","resolv","lgrp"] )

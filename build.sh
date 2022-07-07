@@ -9,6 +9,9 @@ fi
 
 ROOT_PATH=$(pwd)
 
+PREFIX=${ROOT_PATH}/install/usr
+mkdir -p ${PREFIX}
+
 LIBCURL=https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.84.0.tar.gz
 OPENSSL=https://www.openssl.org/source/openssl-3.0.0.tar.gz
 
@@ -21,7 +24,6 @@ CXX=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang++
 RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
 AR=$TOOLCHAIN_BIN/llvm-ar
 LD=$TOOLCHAIN_BIN/ld.lld
-PREFIX=/home/usr
 CFLAGS="-march=armv8-a -mtune=cortex-a78 -fuse-ld=lld"
 CXXFLAGS="-I${PREFIX}/include"
 LDFLAGS="-L${PREFIX}/lib"
@@ -30,10 +32,10 @@ HOST="aarch64-linux-android"
 TARGET="aarch64-linux-android"
 BUILD="x86_64-unknown-linux-gnu"
 
-sudo mkdir -p ${PREFIX}
-sudo chmod 755 -R ${PREFIX}
 
-sudo apt install autopoint
+
+
+sudo apt install autopoint -y
 cd ${ROOT_PATH}
 cd liblzma
 file ./autogen.sh
@@ -64,6 +66,7 @@ make install
 
 cd ${ROOT_PATH}
 cd mongodb-r5.0.3
-python3 -m pip install requirements
+sudo apt install ninja-build -y
+python3 -m pip install -r etc/pip/compile-requirements.txt
 PKG_CONFIG_PATH={PKG_CONFIG_PATH} python3 buildscripts/scons.py install-mongod CC=${CC} CXX=${CXX} CCFLAGS=${CCFLAGS}  LINKFLAGS="-L${PREFIX}/lib -ldl -lz -static -ffunction-sections -fdata-sections -Wl,--gc-sections" AR=${AR} --linker=lld --link-model=static DESTDIR=${PREFIX} --disable-warnings-as-errors TARGET_ARCH="aarch64" HOST_ARCH="x86_64" MONGO_VERSION="5.0.3" --ninja build.ninja
 ninja -j8

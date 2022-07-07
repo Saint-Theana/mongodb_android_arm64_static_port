@@ -51,7 +51,7 @@ make install
 
 cd ${ROOT_PATH}
 cd liblzma
-sudo apt install automake -y
+sudo apt install autoconf -y
 autogen
 PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static
 make -j8

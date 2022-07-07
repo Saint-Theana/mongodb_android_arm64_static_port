@@ -34,41 +34,62 @@ BUILD="x86_64-unknown-linux-gnu"
 
 
 
+function build_liblzma(){
+    sudo apt install autopoint -y
+    cd ${ROOT_PATH}
+    cd liblzma
+    file ./autogen.sh
+    bash autogen.sh
+    sudo chmod 755 ./configure
+    PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static
+    make -j8
+    make install
+}
+ 
+function build_openssl(){
+    wget ${OPENSSL}
+    tar xvf openssl-3.0.0.tar.gz
+    cd openssl-3.0.0
+    PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./Configure linux-aarch64 -fuse-ld=lld --prefix=${PREFIX} shared zlib zlib-dynamic
+    make -j8
+    make install_sw
+}
 
-sudo apt install autopoint -y
-cd ${ROOT_PATH}
-cd liblzma
-file ./autogen.sh
-bash autogen.sh
-sudo chmod 755 ./configure
-PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static
-make -j8
-make install
+function build_libcurl(){ 
+    cd ${ROOT_PATH}
+    wget ${LIBCURL}
+    tar xvf curl-7.84.0.tar.gz
+    cd curl-7.84.0
+    PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --with-openssl --enable-static
+    make -j8
+    make install
+}
 
 
-wget ${OPENSSL}
-tar xvf openssl-3.0.0.tar.gz
-cd openssl-3.0.0
-PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./Configure linux-aarch64 -fuse-ld=lld --prefix=${PREFIX} shared zlib zlib-dynamic
-make -j8
-make install_sw
-
-cd ${ROOT_PATH}
-wget ${LIBCURL}
-tar xvf curl-7.84.0.tar.gz
-cd curl-7.84.0
-PKG_CONFIG_PATH=${PKG_CONFIG_PATH} CFLAGS=${CFLAGS} CXXFLAGS=${CXXFLAGS} LDFLAGS=${LDFLAGS} CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --with-openssl --enable-static
-make -j8
-make install
+function build_mongod(){ 
+    cd ${ROOT_PATH}
+    cd mongodb-r5.0.3
+    sudo apt install ninja-build -y
+    python3 -m pip install -r etc/pip/compile-requirements.txt
+    PKG_CONFIG_PATH={PKG_CONFIG_PATH} python3 buildscripts/scons.py install-mongod CC=${CC} CXX=${CXX} CCFLAGS=${CXXFLAGS}  LINKFLAGS="-L${PREFIX}/lib -ldl -lz -static -ffunction-sections -fdata-sections -Wl,--gc-sections" AR=${AR} --linker=lld --link-model=static DESTDIR=${PREFIX} --disable-warnings-as-errors TARGET_ARCH="aarch64" HOST_ARCH="x86_64" MONGO_VERSION="5.0.3" --ninja build.ninja
+    ninja -j8
+}
 
 
+case "$1" in
+    build_liblzma)
+        build_liblzma
+        ;;
+    build_openssl)
+        build_openssl
+        ;;
+    build_libcurl)
+        build_libcurl
+        ;;
+    build_mongod)
+        build_mongod
+        ;;
+esac
 
-
-cd ${ROOT_PATH}
-cd mongodb-r5.0.3
-sudo apt install ninja-build -y
-python3 -m pip install -r etc/pip/compile-requirements.txt
-PKG_CONFIG_PATH={PKG_CONFIG_PATH} python3 buildscripts/scons.py install-mongod CC=${CC} CXX=${CXX} CCFLAGS=${CXXFLAGS}  LINKFLAGS="-L${PREFIX}/lib -ldl -lz -static -ffunction-sections -fdata-sections -Wl,--gc-sections" AR=${AR} --linker=lld --link-model=static DESTDIR=${PREFIX} --disable-warnings-as-errors TARGET_ARCH="aarch64" HOST_ARCH="x86_64" MONGO_VERSION="5.0.3" --ninja build.ninja
-ninja -j8
 
 #cat build/scons/config.log

@@ -36,18 +36,12 @@ jobs:
         uses: actions/setup-python@v4.0.0
         with:
          python-version: 3.9.0
+         
+      - name: Test Python
+        run: python --version
       
-      - name: Build liblzma
-        run: bash ./build.sh build_liblzma
-      
-      - name: Build openssl
-        run: bash ./build.sh build_openssl
-        
-      - name: Build libcurl
-        run: bash ./build.sh build_libcurl
-        
-      - name: Build mongod
-        run: bash ./build.sh build_mongod
+      - name: Build
+        run: bash ./build.sh
         
       - name: Upload build
         uses: actions/upload-artifact@v3

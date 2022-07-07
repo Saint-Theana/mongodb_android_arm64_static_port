@@ -34,7 +34,7 @@ jobs:
       # Runs a single command using the runners shell
            
       - name: Build Libraries
-        run: bash ./build.sh
+        run: ./build.sh
         
       - name: Setup Python
         uses: actions/setup-python@v4.0.0

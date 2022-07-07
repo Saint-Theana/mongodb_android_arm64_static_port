@@ -2461,7 +2461,7 @@ if env.TargetOSIs('posix'):
     elif not env.TargetOSIs('darwin'):
         env.Append(
             PROGLINKFLAGS=[
-                "-rdynamic",
+                #"-rdynamic",
             ],
         )
 

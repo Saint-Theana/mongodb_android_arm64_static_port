@@ -22,6 +22,7 @@ TOOLCHAIN_BIN=${TOOLCHAIN}/bin
 CC=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang
 CXX=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang++
 RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
+STRIP=$TOOLCHAIN_BIN/llvm-strip
 AR=$TOOLCHAIN_BIN/llvm-ar
 LD=$TOOLCHAIN_BIN/ld.lld
 CFLAGS="-march=armv8-a -mtune=cortex-a78 -fuse-ld=lld"
@@ -75,6 +76,11 @@ function build_mongod(){
     ninja -j8
 }
 
+function strip_mongod(){
+    cd ${ROOT_PATH}
+    ${STRIP} install/usr/bin/mongod
+}
+
 
 case "$1" in
     build_liblzma)
@@ -88,6 +94,9 @@ case "$1" in
         ;;
     build_mongod)
         build_mongod
+        ;;
+    strip_mongod)
+        strip_mongod
         ;;
 esac
 

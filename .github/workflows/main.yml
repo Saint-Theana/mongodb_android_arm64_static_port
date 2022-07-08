@@ -49,6 +49,9 @@ jobs:
       - name: Build mongod
         run: bash ./build.sh build_mongod
         
+      - name: Strip mongod
+        run: bash ./build.sh strip_mongod
+        
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:

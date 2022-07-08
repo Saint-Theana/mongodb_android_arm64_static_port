@@ -2,9 +2,19 @@ MongoDB README
 
 Welcome to MongoDB!
 
-The source files of mongodb are downloaded from https://github.com/mongodb/mongo/archive/refs/tags/r5.0.3.tar.gz
+The source files of mongodb were downloaded from https://github.com/mongodb/mongo/archive/refs/tags/r5.0.3.tar.gz
 
 This repo is for mongodb android static port.
+
+The reason I do this is because the unofficial mongodb package from termux is outdated.and have ndk bug with some cannot locate Unwind_Resume symbol issue.
+
+Why static?The reason that the unofficial mongodb package from termux is outdated is the version of libicu library unofficial mongodb depends on is 69,however it's already upgraded to 71 in official repo.static linked binary won't have that issue.
+
+Why Android?GrassCutter!
+
+The build.sh script is written for github action.
+
+The binary can be download from action artifacts.
 
 COMPONENTS
 

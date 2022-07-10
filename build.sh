@@ -1,6 +1,5 @@
 #!/bin/bash
-tree /opt/hostedtoolcache/ndk/r23c/x64
-export ANDROID_NDK_HOME=/opt/hostedtoolcache/ndk/r23c
+export ANDROID_NDK_HOME=/opt/hostedtoolcache/ndk/r23c/x64
 if [[ $ANDROID_NDK_HOME == "" ]];then
     echo "ndk not found!"
     exit

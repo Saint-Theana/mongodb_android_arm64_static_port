@@ -12,6 +12,8 @@ ROOT_PATH=$(pwd)
 
 PREFIX=${ROOT_PATH}/install/usr
 mkdir -p ${PREFIX}
+mkdir -p ${PREFIX}/lib
+mkdir -p ${PREFIX}/include
 
 LIBCURL=https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.84.0.tar.gz
 OPENSSL=https://www.openssl.org/source/openssl-3.0.0.tar.gz
@@ -72,9 +74,9 @@ function build_libkrb5(){
     ${CC} -I./ -c glob.c
     ${CC} -shared glob.o -o libandroid-glob.so
     ${AR} rcu libandroid-glob.a glob.o
-    cp libandroid-glob.so ${PREFIX}/lib
-    cp libandroid-glob.a ${PREFIX}/lib
-    cp glob.h ${PREFIX}/include
+    cp libandroid-glob.so ${PREFIX}/lib/
+    cp libandroid-glob.a ${PREFIX}/lib/
+    cp glob.h ${PREFIX}/include/
     ls ${PREFIX}/lib
     ls ${PREFIX}/include
     chmod 755 config/*

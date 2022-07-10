@@ -28,9 +28,9 @@ export RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
 export STRIP=$TOOLCHAIN_BIN/llvm-strip
 export AR=$TOOLCHAIN_BIN/llvm-ar
 export LD=$TOOLCHAIN_BIN/ld.lld
-export CFLAGS="-march=armv8-a -mtune=cortex-a78 -fuse-ld=lld"
+export CFLAGS="-I${PREFIX}/include "
 export CXXFLAGS="-I${PREFIX}/include"
-export LDFLAGS="-L${PREFIX}/lib"
+export LDFLAGS="-L${PREFIX}/lib -fuse-ld=lld"
 export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/
 export HOST="aarch64-linux-android"
 export TARGET="aarch64-linux-android"

@@ -106,7 +106,7 @@ function build_mongo_tools(){
     export GOARCH=arm64
     export CGO_LDFLAGS="-g -O2 -fuse-ld=lld -L${PREFIX}/lib -lkrb5support -lk5crypto -landroid-glob -lcom_err -static -ffunction-sections -fdata-sections -Wl,--gc-sections -ldl -s"
     ./build build -tools=mongodump,mongorestore
-    cp bin/* install/usr/bin/
+    cp bin/* ${PREFIX}/bin/
 }
 
 function build_mongod(){ 
@@ -120,9 +120,7 @@ function build_mongod(){
 
 function strip_mongod(){
     cd ${ROOT_PATH}
-    ${STRIP} install/usr/bin/mongod
-    ${STRIP} install/usr/bin/mongos
-    ${STRIP} install/usr/bin/mongo
+    ${STRIP} install/usr/bin/*
 }
 
 

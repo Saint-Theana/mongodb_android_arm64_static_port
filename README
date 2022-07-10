@@ -8,13 +8,26 @@ This repo is for mongodb android static port.
 
 The reason I do this is because the unofficial mongodb package from termux is outdated.and have ndk bug with some cannot locate Unwind_Resume symbol issue.
 
-Why static?The reason that the unofficial mongodb package from termux is outdated is the version of libicu library unofficial mongodb depends on is 69,however it's already upgraded to 71 in official repo.static linked binary won't have that issue.
+Why static?The reason that the unofficial mongodb package from termux is outdated is the version of libicu library unofficial mongodb depends on is 69,however it's already upgraded to 71 in official repo.statically linked binary won't have that issue,who cares disk space anymore?not me.
 
 Why Android?GrassCutter!
 
 The build.sh script is written for github action.
 
 The binary can be download from action artifacts.
+binary contains:
+ bsondump
+ mongodump
+ mongoimport
+ mongostat
+ mongo
+ mongoexport
+ mongorestore
+ mongotop
+ mongod
+ mongofiles
+ mongos
+all statically linked.
 
 COMPONENTS
 

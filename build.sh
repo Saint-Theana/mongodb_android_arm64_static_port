@@ -6,6 +6,7 @@ elif [[ -z $ANDROID_NDK_HOME ]];then
     echo "ndk not exist!"
     exit
 fi
+rm -r /usr/local/lib/android/sdk/ndk-bundle
 
 ROOT_PATH=$(pwd)
 

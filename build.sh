@@ -94,10 +94,10 @@ function build_mongo_tools(){
     cd ${ROOT_PATH}
     cd mongo-tools
     file=$(find / -name gcc_android.c)
-    cp gcc_android_replace.c ${file}
-    go build build.go
+    cat gcc_android_replace.c > ${file}
+    CC=gcc CXX=g++ go build build.go
     cd release
-    go build release.go
+    CC=gcc CXX=g++ go build release.go
     cd ../
     export CGO_CFLAGS="-g -O2 -I${PREFIX}/include"
     export CGO_CXXFLAGS="-g -O2 -I${PREFIX}/include"

@@ -167,6 +167,7 @@ func getTags(ctx *task.Context) ([]string, error) {
 // tools on the current platform.
 func getLdflags(ctx *task.Context) (string, error) {
 	versionStr:="100.5.3-4-g3ed35b07-dirty"
+	err : nil
 	if err != nil {
 		return "", fmt.Errorf("failed to get current version: %w", err)
 	}

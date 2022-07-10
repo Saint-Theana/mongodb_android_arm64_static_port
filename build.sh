@@ -75,6 +75,8 @@ function build_libkrb5(){
     cp libandroid-glob.so ${PREFIX}/lib
     cp libandroid-glob.a ${PREFIX}/lib
     cp glob.h ${PREFIX}/include
+    ls ${PREFIX}/lib
+    ls ${PREFIX}/include
     chmod 755 config/*
     chmod 755 ./configure
     export ac_cv_func_malloc_0_nonnull=yes 
@@ -83,7 +85,6 @@ function build_libkrb5(){
     export ac_cv_func_regcomp=yes 
     export ac_cv_printf_positional=no 
     LDFLAGS="${LDFLAGS} -landroid-glob" ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static --disable-shared
-    cat config.log
     make -j8
     make install
 }

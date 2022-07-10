@@ -232,8 +232,8 @@ func selectedPkgs(ctx *task.Context) []string {
 }
 
 func getPlatform() (platform.Platform, error) {
-	if os.Getenv("CI") != "" {
-		return platform.GetFromEnv()
-	}
+// 	if os.Getenv("CI") != "" {
+// 		return platform.GetFromEnv()
+// 	}
 	return platform.DetectLocal()
 }

@@ -37,7 +37,7 @@ export BUILD="x86_64-unknown-linux-gnu"
 
 
 function build_liblzma(){
-    sudo apt install autopoint -y
+    sudo apt install autopoint git -y
     cd ${ROOT_PATH}
     cd liblzma
     file ./autogen.sh

@@ -94,9 +94,9 @@ function build_mongo_tools(){
     cd ${ROOT_PATH}
     cd mongo-tools
     cat gcc_android_replace.c > $(go env GOROOT)/src/runtime/cgo/gcc_android.c
-    CC=gcc CXX=g++ go build build.go
+    AR=ar CC=gcc CXX=g++ go build build.go
     cd release
-    CC=gcc CXX=g++ go build release.go
+    AR=ar CC=gcc CXX=g++ go build release.go
     cd ../
     export CGO_CFLAGS="-g -O2 -I${PREFIX}/include"
     export CGO_CXXFLAGS="-g -O2 -I${PREFIX}/include"

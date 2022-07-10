@@ -1,9 +1,15 @@
-# This is a basic workflow to help you get started with Actions
+name: CI
 
-name: Build
-
+# Controls when the workflow will run
 on:
-  [workflow_dispatch,push]
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -16,7 +22,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - uses: nttld/setup-ndk@v1.0.6
+      - uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
           ndk-version: r23c
@@ -27,28 +33,20 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4.0.0
         with:
-          python-version: 3.9.0
+         python-version: 3.9.0
          
-      - name: Set up Go
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.18
-
       - name: Build libkrb5
         run: bash ./build.sh build_libkrb5
         
       - name: Build liblzma
         run: bash ./build.sh build_liblzma
-        
+      
       - name: Build openssl
         run: bash ./build.sh build_openssl
         
-      - name: Build libkrb5
+      - name: Build libcurl
         run: bash ./build.sh build_libcurl
-      
-      - name: Build mongo-tools
-        run: bash ./build.sh build_mongo_tools
-      
+        
       - name: Build mongod
         run: bash ./build.sh build_mongod
         
@@ -72,8 +70,3 @@ jobs:
             install/usr/bin/mongostat
             install/usr/bin/mongotop
             
-            
-
-  
-
-

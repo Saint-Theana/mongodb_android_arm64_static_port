@@ -120,7 +120,9 @@ function build_mongod(){
 
 function strip_mongod(){
     cd ${ROOT_PATH}
-    ${STRIP} install/usr/bin/* 2>/dev/null
+    ${STRIP} install/usr/bin/mongod
+    ${STRIP} install/usr/bin/mongos
+    ${STRIP} install/usr/bin/mongo
 }
 
 

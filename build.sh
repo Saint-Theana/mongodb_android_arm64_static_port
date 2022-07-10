@@ -17,24 +17,23 @@ mkdir -p ${PREFIX}
 LIBCURL=https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.84.0.tar.gz
 OPENSSL=https://www.openssl.org/source/openssl-3.0.0.tar.gz
 
-ANDROID_ABI=26
-ANDROID_ARCH=aarch64
-TOOLCHAIN=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64
-TOOLCHAIN_BIN=${TOOLCHAIN}/bin
-CC=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang
-CXX=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang++
-RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
-STRIP=$TOOLCHAIN_BIN/llvm-strip
-AR=$TOOLCHAIN_BIN/llvm-ar
-LD=$TOOLCHAIN_BIN/ld.lld
-CFLAGS="-march=armv8-a -mtune=cortex-a78 -fuse-ld=lld"
-CXXFLAGS="-I${PREFIX}/include"
-LDFLAGS="-L${PREFIX}/lib"
-PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/
-HOST="aarch64-linux-android"
-TARGET="aarch64-linux-android"
-BUILD="x86_64-unknown-linux-gnu"
-
+export ANDROID_ABI=26
+export ANDROID_ARCH=aarch64
+export TOOLCHAIN=${ANDROID_NDK_HOME}/toolchains/llvm/prebuilt/linux-x86_64
+export TOOLCHAIN_BIN=${TOOLCHAIN}/bin
+export CC=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang
+export CXX=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang++
+export RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
+export STRIP=$TOOLCHAIN_BIN/llvm-strip
+export AR=$TOOLCHAIN_BIN/llvm-ar
+export LD=$TOOLCHAIN_BIN/ld.lld
+export CFLAGS="-march=armv8-a -mtune=cortex-a78 -fuse-ld=lld"
+export CXXFLAGS="-I${PREFIX}/include"
+export LDFLAGS="-L${PREFIX}/lib"
+export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/
+export HOST="aarch64-linux-android"
+export TARGET="aarch64-linux-android"
+export BUILD="x86_64-unknown-linux-gnu"
 
 
 function build_liblzma(){
@@ -79,7 +78,12 @@ function build_libkrb5(){
     cp glob.h ${PREFIX}/include
     chmod 755 config/*
     chmod 755 ./configure
-    ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes krb5_cv_attr_constructor_destructor=yes ac_cv_func_regcomp=yes ac_cv_printf_positional=no PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/ CFLAGS=" -D_PASSWORD_LEN=PASS_MAX -I${PREFIX}/include -march=armv8-a -mtune=cortex-a78 -fuse-ld=lld -DANDROID" CXXFLAGS="-I${PREFIX}/include" LDFLAGS="-L${PREFIX}/lib -landroid-glob -fuse-ld=lld" CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static --disable-shared
+    export ac_cv_func_malloc_0_nonnull=yes 
+    export ac_cv_func_realloc_0_nonnull=yes 
+    export krb5_cv_attr_constructor_destructor=yes 
+    export ac_cv_func_regcomp=yes 
+    export ac_cv_printf_positional=no 
+    LDFLAGS="${LDFLAGS} -landroid-glob" ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static --disable-shared
     cat config.log
     make -j8
     make install

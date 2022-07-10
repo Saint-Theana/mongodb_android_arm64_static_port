@@ -3,12 +3,6 @@
 name: CI
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,7 +29,12 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4.0.0
         with:
-         python-version: 3.9.0
+          python-version: 3.9.0
+         
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
       
       - name: Build liblzma
         run: bash ./build.sh build_liblzma
@@ -46,6 +45,12 @@ jobs:
       - name: Build libcurl
         run: bash ./build.sh build_libcurl
         
+      - name: Build libkrb5
+        run: bash ./build.sh build_libkrb5
+      
+      - name: Build mongo-tools
+        run: bash ./build.sh build_mongo_tools
+      
       - name: Build mongod
         run: bash ./build.sh build_mongod
         
@@ -56,7 +61,20 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Mongodb
-          path: install/usr/bin/mongod
+          path: |
+            install/usr/bin/mongod
+            install/usr/bin/mongos
+            install/usr/bin/mongo
+            install/usr/bin/bsondump
+            install/usr/bin/mongodump
+            install/usr/bin/mongoexport
+            install/usr/bin/mongofiles
+            install/usr/bin/mongoimport
+            install/usr/bin/mongorestore
+            install/usr/bin/mongostat
+            install/usr/bin/mongotop
+            
+            
 
   
 

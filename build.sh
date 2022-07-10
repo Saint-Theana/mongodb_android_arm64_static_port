@@ -100,6 +100,7 @@ function build_mongo_tools(){
     go build release.go
     cd ../
     export CGO_CFLAGS="-g -O2 -I${PREFIX}/include"
+    export CGO_CXXFLAGS="-g -O2 -I${PREFIX}/include"
     export CGO_ENABLED=1
     export CC=${CC}
     export CXX=${CXX}

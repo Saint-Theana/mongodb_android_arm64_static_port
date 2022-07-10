@@ -94,7 +94,7 @@ function build_mongo_tools(){
     cd ${ROOT_PATH}
     cd mongo-tools
     cat gcc_android_replace.c > $(go env GOROOT)/src/runtime/cgo/gcc_android.c
-    sed -i $(go env GOROOT)/src/runtime/cgo/cgo.g 's/android LDFLAGS: -llog/android LDFLAGS: /g'
+    sed 's/android LDFLAGS: -llog/android LDFLAGS: /g' -i $(go env GOROOT)/src/runtime/cgo/cgo.g
     AR=ar CC=gcc CXX=g++ CGO_ENABLED=0 go build build.go
     cd release
     AR=ar CC=gcc CXX=g++ CGO_ENABLED=0 go build release.go

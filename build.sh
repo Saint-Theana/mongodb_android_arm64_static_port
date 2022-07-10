@@ -27,7 +27,6 @@ export CXX=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang++
 export RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
 export STRIP=$TOOLCHAIN_BIN/llvm-strip
 export AR=$TOOLCHAIN_BIN/llvm-ar
-export LD=$TOOLCHAIN_BIN/ld.lld
 export CFLAGS="-I${PREFIX}/include "
 export CXXFLAGS="-I${PREFIX}/include"
 export LDFLAGS="-L${PREFIX}/lib -fuse-ld=lld"
@@ -79,8 +78,7 @@ function build_libkrb5(){
     cp glob.h ${PREFIX}/include/
     ls ${PREFIX}/lib
     ls ${PREFIX}/include
-    chmod 755 config/*
-    chmod 755 ./configure
+    autoreconf
     export ac_cv_func_malloc_0_nonnull=yes 
     export ac_cv_func_realloc_0_nonnull=yes 
     export krb5_cv_attr_constructor_destructor=yes 

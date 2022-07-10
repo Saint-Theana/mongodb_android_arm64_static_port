@@ -7,7 +7,7 @@ elif [[ -z $ANDROID_NDK_HOME ]];then
     exit
 fi
 rm -r /usr/local/lib/android/sdk/ndk-bundle
-
+echo ${ANDROID_NDK_HOME}
 ROOT_PATH=$(pwd)
 
 PREFIX=${ROOT_PATH}/install/usr

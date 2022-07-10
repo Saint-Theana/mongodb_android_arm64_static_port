@@ -97,6 +97,7 @@ function build_mongo_tools(){
     AR=ar CC=gcc CXX=g++ CGO_ENABLED=0 go build build.go
     cd release
     AR=ar CC=gcc CXX=g++ CGO_ENABLED=0 go build release.go
+    ./release get-version
     cd ../
     export CGO_CFLAGS="-g -O2 -I${PREFIX}/include"
     export CGO_CXXFLAGS="-g -O2 -I${PREFIX}/include"

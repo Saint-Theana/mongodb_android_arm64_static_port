@@ -33,14 +33,14 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.18
-      
-      - name: Build liblzma
+
+      - name: Build libkrb5
         run: bash ./build.sh build_libkrb5
-      
-      - name: Build openssl
+        
+      - name: Build liblzma
         run: bash ./build.sh build_liblzma
         
-      - name: Build libcurl
+      - name: Build openssl
         run: bash ./build.sh build_openssl
         
       - name: Build libkrb5

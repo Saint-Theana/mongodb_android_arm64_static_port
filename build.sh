@@ -93,8 +93,7 @@ function build_libkrb5(){
 function build_mongo_tools(){ 
     cd ${ROOT_PATH}
     cd mongo-tools
-    file=$(find / -name gcc_android.c)
-    cat gcc_android_replace.c > ${file}
+    cat gcc_android_replace.c > $(go env GOROOT)/src/runtime/cgo/gcc_android.c
     CC=gcc CXX=g++ go build build.go
     cd release
     CC=gcc CXX=g++ go build release.go

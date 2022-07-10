@@ -77,7 +77,7 @@ function build_libkrb5(){
     cp glob.h ${PREFIX}/include
     chmod 755 config/*
     autoreconf
-    ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes krb5_cv_attr_constructor_destructor=yes ac_cv_func_regcomp=yes ac_cv_printf_positional=no PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/ CFLAGS=" -D_PASSWORD_LEN=PASS_MAX -I${PREFIX}/include -march=armv8-a -mtune=cortex-a78 -fuse-ld=lld -DANDROID" CXXFLAGS="-I${PREFIX}/include" LDFLAGS="-L${PREFIX}/lib -landroid-glob" CC=${CC} RANLIB=$RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static --disable-shared
+    ac_cv_func_malloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes krb5_cv_attr_constructor_destructor=yes ac_cv_func_regcomp=yes ac_cv_printf_positional=no PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/ CFLAGS=" -D_PASSWORD_LEN=PASS_MAX -I${PREFIX}/include -march=armv8-a -mtune=cortex-a78 -fuse-ld=lld -DANDROID" CXXFLAGS="-I${PREFIX}/include" LDFLAGS="-L${PREFIX}/lib -landroid-glob" CC=${CC} RANLIB=${RANLIB} CXX=${CXX} AR=${AR} LD=${LD} ./configure --prefix=${PREFIX} --host=${HOST} --target=${TARGET} --build=${BUILD} --enable-static --disable-shared
     make -j8
     make install
 }

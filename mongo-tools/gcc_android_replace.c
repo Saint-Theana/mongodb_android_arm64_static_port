@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <dlfcn.h>
 #include "libcgo.h"
+#include <sys/system_properties.h>
 
 void
 fatalf(const char* format, ...)
@@ -45,23 +46,25 @@ fatalf(const char* format, ...)
 static void
 inittls(void **tlsg, void **tlsbase)
 {
-	return;
-	/*
 	pthread_key_t k;
 	int i, err;
-	void *handle, *get_ver, *off;
+	void  *off;
 
 	// Check for Android Q where we can use the free TLS_SLOT_APP slot.
-	handle = dlopen("libc.so", RTLD_LAZY);
-	if (handle == NULL) {
-		fatalf("inittls: failed to dlopen main program");
-		return;
-	}
+//	handle = dlopen("/system/lib64/libc.so", RTLD_LAZY);
+//	if (handle == NULL) {
+//		fatalf("inittls: failed to dlopen main program");
+//		return;
+//	}
 	// android_get_device_api_level is introduced in Android Q, so its mere presence
 	// is enough.
-	get_ver = dlsym(handle, "android_get_device_api_level");
-	dlclose(handle);
-	if (get_ver != NULL) {
+//	get_ver = dlsym(handle, "android_get_device_api_level");
+//	#include <sys/system_properties.h>dlclose(handle);
+        char sdk[128] = "0";
+
+        __system_property_get("ro.build.version.sdk", sdk);
+        int sdk_verison = atoi(sdk);      
+	if (sdk_verison >= 29) {
 		off = (void *)(TLS_SLOT_APP*sizeof(void *));
 		// tlsg is initialized to Q's free TLS slot. Verify it while we're here.
 		if (*tlsg != off) {
@@ -87,7 +90,6 @@ inittls(void **tlsg, void **tlsbase)
 		}
 	}
 	fatalf("inittls: could not find pthread key");
-	*/
 }
 
 void (*x_cgo_inittls)(void **tlsg, void **tlsbase) = inittls;

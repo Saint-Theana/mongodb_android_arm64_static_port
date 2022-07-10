@@ -14,8 +14,8 @@ Why Android?GrassCutter!
 
 The build.sh script is written for github action.
 
-The binary can be download from action artifacts.
-binary contains:
+The binaries can be downloaded from action artifacts.
+binaries contains mongod and mongo-tools:
  bsondump
  mongodump
  mongoimport

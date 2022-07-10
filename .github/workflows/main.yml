@@ -47,6 +47,9 @@ jobs:
       - name: Build libcurl
         run: bash ./build.sh build_libcurl
         
+      - name: Build mongo-tools
+        run: bash ./build.sh build_mongo_tools
+        
       - name: Build mongod
         run: bash ./build.sh build_mongod
         

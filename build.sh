@@ -27,8 +27,8 @@ export CXX=$TOOLCHAIN_BIN/${ANDROID_ARCH}-linux-android${ANDROID_ABI}-clang++
 export RANLIB=$TOOLCHAIN_BIN/llvm-ranlib
 export STRIP=$TOOLCHAIN_BIN/llvm-strip
 export AR=$TOOLCHAIN_BIN/llvm-ar
-export CFLAGS="-I${PREFIX}/include "
-export CXXFLAGS="-I${PREFIX}/include"
+export CFLAGS="-I${PREFIX}/include -march=armv8-a"
+export CXXFLAGS="-I${PREFIX}/include -march=armv8-a"
 export LDFLAGS="-L${PREFIX}/lib -fuse-ld=lld"
 export PKG_CONFIG_PATH=${PREFIX}/lib/pkgconfig/
 export HOST="aarch64-linux-android"

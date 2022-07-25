@@ -96,8 +96,8 @@ function build_mongo_tools(){
     cat gcc_android_replace.c > $(go env GOROOT)/src/runtime/cgo/gcc_android.c
     sed 's/android LDFLAGS: -llog/android LDFLAGS: /g' -i $(go env GOROOT)/src/runtime/cgo/cgo.go
     AR=ar CC=gcc CXX=g++ CGO_ENABLED=0 go build build.go
-    export CGO_CFLAGS="-g -O2 -I${PREFIX}/include"
-    export CGO_CXXFLAGS="-g -O2 -I${PREFIX}/include"
+    export CGO_CFLAGS="-g -O2 ${CFLAGS}"
+    export CGO_CXXFLAGS="-g -O2 ${CXXFLAGS}"
     export CGO_ENABLED=1
     export CC=${CC}
     export CXX=${CXX}

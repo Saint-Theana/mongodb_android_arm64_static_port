@@ -30,6 +30,9 @@
 #include <inttypes.h>
 #include <stddef.h>
 
+
+#define HAVE_NO_CRC32_HARDWARE 1
+
 #if defined(__linux__) && !defined(HAVE_NO_CRC32_HARDWARE)
 #include <asm/hwcap.h>
 #include <sys/auxv.h>

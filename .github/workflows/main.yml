@@ -41,27 +41,33 @@ jobs:
       
       - name: Build openssl
       - run: bash ./build.sh build_openssl
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         
       - name: Build libkrb5
       - run: bash ./build.sh build_libkrb5
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build libcurl
       - run: bash ./build.sh build_libcurl
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build mongo-tools
       - run: bash ./build.sh build_mongo_tools
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build mongod
       - run: bash ./build.sh build_mongod
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         
       - name: Strip mongod
       - run: bash ./build.sh strip_mongod
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         
       - name: Upload build
         uses: actions/upload-artifact@v3

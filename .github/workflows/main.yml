@@ -36,37 +36,37 @@ jobs:
          python-version: 3.9.0
         
       - name: Build liblzma
-      - run: bash ./build.sh build_liblzma
+        run: bash ./build.sh build_liblzma
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
       
       - name: Build openssl
-      - run: bash ./build.sh build_openssl
+        run: bash ./build.sh build_openssl
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         
       - name: Build libkrb5
-      - run: bash ./build.sh build_libkrb5
+        run: bash ./build.sh build_libkrb5
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build libcurl
-      - run: bash ./build.sh build_libcurl
+        run: bash ./build.sh build_libcurl
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build mongo-tools
-      - run: bash ./build.sh build_mongo_tools
+        run: bash ./build.sh build_mongo_tools
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
 
       - name: Build mongod
-      - run: bash ./build.sh build_mongod
+        run: bash ./build.sh build_mongod
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         
       - name: Strip mongod
-      - run: bash ./build.sh strip_mongod
+        run: bash ./build.sh strip_mongod
         env: 
             ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
         

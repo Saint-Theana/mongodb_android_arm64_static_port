@@ -37,7 +37,8 @@ jobs:
         
       - name: Build liblzma
       - run: bash ./build.sh build_liblzma
-        env: ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+        env: 
+            ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
       
       - name: Build openssl
       - run: bash ./build.sh build_openssl

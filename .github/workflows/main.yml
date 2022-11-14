@@ -26,9 +26,9 @@ jobs:
         id: setup-ndk
         with:
           ndk-version: r23c
-          add-to-path: /opt/hostedtoolcache/ndk/r23c
+          add-to-path: false
         env:
-          ANDROID_NDK_HOME: /opt/hostedtoolcache/ndk/r23c
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
       # Runs a single command using the runners shell
       - name: Setup Python
         uses: actions/setup-python@v4.0.0

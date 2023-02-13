@@ -31,9 +31,9 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
       # Runs a single command using the runners shell
       - name: Setup Python
-        uses: actions/setup-python@v4.0.0
+        uses: actions/setup-python@v4
         with:
-         python-version: 3.9.0
+            python-version: '3.10' 
         
       - name: Build liblzma
         run: bash ./build.sh build_liblzma
